@@ -8,7 +8,7 @@ class Student_Management():
         
         student_id = int(input("Enter Student Id: "))
         name = input("Enter Student Name: ")
-        marks = int(input("Enter Student Marks: "))
+        marks = float(input("Enter Student Marks: "))
         age = int(input("Enter Student Age: "))
 
         student = S(student_id, name, marks, age)
@@ -17,28 +17,28 @@ class Student_Management():
         print("Student Added Successfully...")
 
     def view_Student(self):
-        if len(self.students == 0):
+        if len(self.students) == 0:
             print("No student is found...")
             return
         
         for i in self.students:
             print("Name: ", i.name)
-            print("ID: ", i.student_id)
+            print("ID: ", i.Student_id)
             print("\n")
     
     def search_Student(self):
         field = {
-            "Id" : "Student_id",
-            "Name" : "name",
-            "Marks" : "marks",
-            "Age" : "age"
+            "ID" : "Student_id",
+            "NAME" : "name",
+            "MARKS" : "marks",
+            "AGE" : "age"
         }
 
         key = input("Search By: ")
-        if key not in field:
+        if key.upper() not in field:
             return print("Invalid Field")
         
-        value = input(f"Enter a {key}")
+        value = input(f"Enter a {key}: ")
         value = value if key.lower() == "name" else int(value)
 
         student = [s for s in self.students if getattr(s, field[key.upper()]) == value]
